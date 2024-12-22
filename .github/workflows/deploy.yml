@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: npm run build -- /juice-nettisivut
     
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1

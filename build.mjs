@@ -9,7 +9,7 @@ import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, write
 import path from "node:path";
 
 // If this is just root, then leave empty, otherwise prefix via / (as in /dir/path)
-const BASE_URL = "/out";
+const BASE_URL = process.argv.length > 2 ? process.argv[2] : "/out";
 
 /** @type {Page[]} */
 const PAGES = [
@@ -48,7 +48,7 @@ const MINIFY_OPTIONS = {
 
 // # Actual build code
 
-console.log("Starting build");
+console.log(`Starting build for ${BASE_URL}`);
 
 // Delete & create a clean output directory (has to be made beforehand to be able to write files into it)
 if (existsSync("out")) {
