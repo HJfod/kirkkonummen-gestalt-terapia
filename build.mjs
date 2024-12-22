@@ -5,7 +5,7 @@
 import { compile } from "sass";
 import { minify } from "html-minifier";
 import { bundle, transform } from "lightningcss";
-import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 // If this is just root, then leave empty, otherwise prefix via / (as in /dir/path)
@@ -51,7 +51,9 @@ const MINIFY_OPTIONS = {
 console.log("Starting build");
 
 // Delete & create a clean output directory (has to be made beforehand to be able to write files into it)
-rmSync("out", { recursive: true });
+if (existsSync("out")) {
+    rmSync("out", { recursive: true });
+}
 mkdirSync("out", { recursive: true });
 
 // Transpile & minify CSS with sass
