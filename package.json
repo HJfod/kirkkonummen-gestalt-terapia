@@ -1,0 +1,20 @@
+{
+    "name": "kirkkonummen-gestalt-terapia",
+    "version": "1.0.0",
+    "description": "Kirkkonummen gestalt-terapian verkkosivut",
+    "author": "",
+    "watch": {
+        "build": ["src/*.*", "build.mjs"]
+    },
+    "scripts": {
+        "build": "node build.mjs",
+        "watch": "npm-watch"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "html-minifier": "^4.0.0",
+        "lightningcss": "^1.28.2",
+        "npm-watch": "^0.13.0",
+        "sass": "^1.83.0"
+    }
+}
