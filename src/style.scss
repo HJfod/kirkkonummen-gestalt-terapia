@@ -17,6 +17,12 @@ body {
     font-size: 1.2rem;
 }
 
+@media screen and (max-width: 400px) {
+    body {
+        font-size: 1rem;
+    }
+}
+
 h1, h2, h3, h4 {
     text-align: center;
     font-family: "Faustina", sans-serif;
@@ -27,33 +33,154 @@ nav {
     top: 0px;
 
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     gap: .5rem;
 
     background-color: var(--nav-bg);
-    width: 100%;
-    padding: .5rem;
-    
-    z-index: 2;
+    width: calc(100% - 2rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 3rem;
 
-    & > a {
-        padding: .25rem;
-        color: var(--nav-link);
-        text-decoration: none;
-        transition: color .1s;
-        &.current {
-            color: var(--nav-link-current);
+    z-index: 2;
+    
+    transition: height .35s;
+    overflow: hidden;
+
+    & > .items {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+        height: 3rem;
+
+        & > a {
+            padding: .25rem;
+            color: var(--nav-link);
+            text-decoration: none;
+            transition: color .1s;
+            font-size: .9em;
+            &.current {
+                color: var(--nav-link-current);
+            }
+            &:hover {
+                color: var(--nav-link-current);
+            }
         }
-        &:hover {
-            color: var(--nav-link-current);
+    }
+
+    & > .controls {
+        display: none;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 3rem;
+        min-height: 3rem;
+
+        & > h1 {
+            margin: 0;
+            color: var(--nav-link);
+            font-size: 1em;
+            text-align: left;
         }
+        & > button {
+            --tick-size: 4.3px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--tick-size);
+            
+            width: calc(var(--tick-size) * 5);
+            height: calc(var(--tick-size) * 5);
+    
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            & > span {
+                display: block;
+                background-color: var(--nav-link);
+                height: var(--tick-size);
+                width: calc(var(--tick-size) * 5);
+                border-radius: 2px;
+                transition: background-color .1s;
+            }
+            &:hover > span {
+                background-color: var(--nav-link-current);
+            }
+            @media screen and (max-width: 400px) {
+                --tick-size: 3.67px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1150px) {
+        & > .controls {
+            display: flex;
+        }
+        & > .items {
+            flex-direction: column;
+            align-items: start;
+            height: auto;
+        }
+        &.open {
+            height: 100%;
+        }
+    }
+}
+
+.kukka-image-offset {
+    margin-top: -20rem;
+}
+.metsa-image-offset {
+    margin-left: -47rem;
+    margin-top: -30rem;
+}
+.hevoset-image-offset {
+    margin-left: -57rem;
+    margin-top: -45rem;
+}
+.kirjoituskone-image-offset {
+    margin-left: -47rem;
+    margin-top: -30rem;
+}
+@media screen and (max-width: 1150px) {
+    .kukka-image-offset {
+        margin-top: auto;
+    }
+    .metsa-image-offset {
+        margin-left: auto;
+        margin-top: auto;
+    }
+    .hevoset-image-offset {
+        margin-left: auto;
+        margin-top: auto;
+    }
+    .kirjoituskone-image-offset {
+        margin-left: auto;
+        margin-top: auto;
     }
 }
 
 main, aside {
     padding: 1rem;
+    width: min(90%, 70ch);
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        figcaption {
+            width: fit-content;
+        }
+    }
 }
 
 div.content {
@@ -71,10 +198,13 @@ div.sidey-sidey {
     justify-content: center;
     align-items: start;
     gap: 1rem;
-}
 
-main, aside {
-    width: min(90%, 70ch);
+    @media screen and (max-width: 1000px) {
+        & {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
 }
 
 img {
@@ -104,7 +234,7 @@ div.cover {
     background-color: var(--body);
 
     position: fixed;
-    top: 2rem;
+    top: 3rem;
 
     width: 100%;
     height: 33rem;
@@ -122,16 +252,14 @@ div.cover {
         font-size: 1.75em;
     }
     img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
+        // width: 100%;
+        // max-width: 100%;
+        // height: auto;
+        min-width: 100%;
+        max-width: none;
+        object-fit: cover;
+        object-position: center;
         transition: opacity .25s;
-        &.lil-upper-thx {
-            margin-top: -20rem;
-        }
-        &.lil-up-thx {
-            margin-top: -10rem;
-        }
     }
     & ~ span.cover-padding {
         height: 35rem;
@@ -149,7 +277,7 @@ div.cover {
             opacity: 0%;
         }
         h1 {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             font-size: 1.25em;
         }
         & ~ span.cover-padding {
@@ -163,6 +291,22 @@ div.cover {
             margin-top: 20rem;
             margin-bottom: 10rem;
             transition: margin-top .25s, margin-bottom .25s;
+        }
+    }
+
+    @media screen and (max-width: 1000px) {
+        & {
+            height: 23rem;
+            h1 {
+                margin-top: 10rem;
+            }
+        }
+        &.collapsed ~ span.anti-cover-padding {
+            height: 25rem;
+        }
+        &.collapsed ~ div.cover-bg {
+            margin-top: 15rem;
+            margin-bottom: 5rem;
         }
     }
 }
