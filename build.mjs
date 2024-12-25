@@ -132,7 +132,7 @@ for (const page of PAGES) {
                         <source
                             type="image/webp"
                             srcset="${BASE_URL}/images/${imgName}-${size}.webp"
-                            ${i === sizes.length - 1 ?
+                            ${i < (sizes.length - 1) ?
                                 `media="(min-width: ${(sizes[i] + sizes[i + 1]) / 2}px)"` :
                                 ""
                             }
