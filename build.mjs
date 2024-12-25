@@ -84,7 +84,7 @@ for (const img of readdirSync("images")) {
     let width = (await process.metadata()).width;
     if (!width) throw `Unable to get ${img} width`;
     while (width > 512) {
-        process.resize(width).toFile(`out/images/${name}-${width}.jpg`);
+        process.resize(width).toFile(`out/images/${name}-${width}.webp`);
         images[name].sizes.push(width);
         width = Math.floor(width / 1.5);
     }
@@ -126,11 +126,11 @@ for (const page of PAGES) {
                 <picture>
                     ${sizes.map((size, i) => `
                         <source
-                            srcset="${BASE_URL}/images/${imgName}-${size}.jpg"
+                            srcset="${BASE_URL}/images/${imgName}-${size}.webp"
                             media="(min-width: ${(sizes[i] + sizes[i + 1]) / 2}px)"
                         >
                     `).join("")}
-                    <img class="${imgName}-image" src="${BASE_URL}/images/${imgName}-${sizes.at(-1)}.jpg">
+                    <img class="${imgName}-image" src="${BASE_URL}/images/${imgName}-${sizes.at(-1)}.webp">
                 </picture>
             `;
         })
