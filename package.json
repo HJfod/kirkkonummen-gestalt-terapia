@@ -15,6 +15,7 @@
     },
     "license": "ISC",
     "devDependencies": {
+        "browserslist": "^4.24.3",
         "html-minifier": "^4.0.0",
         "lightningcss": "^1.28.2",
         "npm-watch": "^0.13.0",

@@ -4,10 +4,11 @@
 
 import { compile } from "sass";
 import { minify } from "html-minifier";
-import { transform } from "lightningcss";
-import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { transform, browserslistToTargets } from "lightningcss";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
+import browserslist from "browserslist";
 
 // If this is just root, then leave empty, otherwise prefix via / (as in /dir/path)
 const BASE_URL = process.argv.length > 2 ? process.argv[2] : "/out";
@@ -47,6 +48,8 @@ const MINIFY_OPTIONS = {
     collapseWhitespace: true,
 };
 
+const BROWSER_TARGETS = browserslistToTargets(browserslist(">= 0.25%"));
+
 // # Actual build code
 
 console.log(`Starting build for ${BASE_URL}`);
@@ -64,6 +67,7 @@ writeFileSync("out/style.css", transform({
     code: Buffer.from(compile("src/style.scss").css),
     minify: true,
     sourceMap: false,
+    targets: BROWSER_TARGETS,
 }).code);
 
 // Minify JS
