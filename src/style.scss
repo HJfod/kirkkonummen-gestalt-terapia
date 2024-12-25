@@ -139,6 +139,9 @@ nav {
             flex-direction: column;
             align-items: start;
             height: auto;
+            & > a {
+                width: 100%;
+            }
         }
         &.open {
             height: 100%;
@@ -220,9 +223,27 @@ div.sidey-sidey {
         }
     }
 }
+div.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 img {
     max-width: 100%;
+}
+
+table {
+    tr {
+        th {
+            padding-top: .25em;
+            text-align: start;
+        }
+        td {
+            padding-top: .25em;
+            padding-left: 1em;
+        }
+    }
 }
 
 blockquote::before {
