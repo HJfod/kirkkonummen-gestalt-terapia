@@ -104,7 +104,11 @@ nav {
                 height: var(--tick-size);
                 width: calc(var(--tick-size) * 5);
                 border-radius: 2px;
-                transition: background-color .1s;
+                transition:
+                    background-color .1s,
+                    opacity .1s,
+                    transform .2s
+                ;
             }
             &:hover > span {
                 background-color: var(--nav-link-current);
@@ -112,6 +116,18 @@ nav {
             @media screen and (max-width: 400px) {
                 --tick-size: 3.67px;
             }
+        }
+    }
+
+    &.open > .controls > button {
+        & > span:first-child {
+            transform: translateY(.6em) rotate(45deg);
+        }
+        & > span:nth-child(2) {
+            transform: rotate(-45deg);
+        }
+        & > span:last-child {
+            opacity: 0%;
         }
     }
 
