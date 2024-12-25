@@ -121,7 +121,7 @@ nav {
 
     &.open > .controls > button {
         & > span:first-child {
-            transform: translateY(calc(var(--tick-size) * 2.1)) rotate(45deg);
+            transform: translateY(calc(var(--tick-size) * 1.9)) rotate(45deg);
         }
         & > span:nth-child(2) {
             transform: rotate(-45deg);
