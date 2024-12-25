@@ -48,7 +48,7 @@ const MINIFY_OPTIONS = {
     collapseWhitespace: true,
 };
 
-const BROWSER_TARGETS = browserslistToTargets(browserslist(">= 0.25%"));
+const BROWSER_TARGETS = browserslistToTargets(browserslist("defaults"));
 
 // # Actual build code
 
