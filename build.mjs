@@ -81,6 +81,7 @@ for (const img of readdirSync("images")) {
 
     const process = sharp(`images/${img}`);
 
+    // Generate smaller images for mobile devices
     let width = (await process.metadata()).width;
     if (!width) throw `Unable to get ${img} width`;
     while (width > 512) {
@@ -88,6 +89,9 @@ for (const img of readdirSync("images")) {
         images[name].sizes.push(width);
         width = Math.floor(width / 1.5);
     }
+
+    // For fallback
+    process.resize(width).toFile(`out/images/${name}.jpg`);
 }
 
 /**
@@ -126,11 +130,18 @@ for (const page of PAGES) {
                 <picture>
                     ${sizes.map((size, i) => `
                         <source
+                            type="image/webp"
                             srcset="${BASE_URL}/images/${imgName}-${size}.webp"
-                            media="(min-width: ${(sizes[i] + sizes[i + 1]) / 2}px)"
+                            ${i === sizes.length - 1 ?
+                                `media="(min-width: ${(sizes[i] + sizes[i + 1]) / 2}px)"` :
+                                ""
+                            }
                         >
                     `).join("")}
-                    <img class="${imgName}-image" src="${BASE_URL}/images/${imgName}-${sizes.at(-1)}.webp">
+                    <img
+                        class="${imgName}-image"
+                        src="${BASE_URL}/images/${imgName}.jpg"
+                    >
                 </picture>
             `;
         })
