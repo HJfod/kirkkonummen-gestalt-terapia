@@ -130,34 +130,41 @@ nav {
     }
 }
 
-.kukka-image-offset {
-    margin-top: -20rem;
+.kukka-image {
+    // margin-top: -20rem;
 }
-.metsa-image-offset {
-    margin-left: -47rem;
-    margin-top: -30rem;
+.metsa-image {
+    // margin-left: -47rem;
+    // margin-top: -30rem;
 }
-.hevoset-image-offset {
-    margin-left: -57rem;
-    margin-top: -45rem;
+.hevoset-image {
+    // margin-left: -57rem;
+    // margin-top: -45rem;
 }
-.kirjoituskone-image-offset {
-    margin-left: -47rem;
-    margin-top: -30rem;
+.kirjoituskone-image {
+    // margin-left: -47rem;
+    // margin-top: -30rem;
+}
+.juha-image {
+    max-width: 80%;
+}
+.kirja-image {
+    max-width: 80%;
+    max-height: 40rem;
 }
 @media screen and (max-width: 1150px) {
-    .kukka-image-offset {
+    .kukka-image {
         margin-top: auto;
     }
-    .metsa-image-offset {
+    .metsa-image {
         margin-left: auto;
         margin-top: auto;
     }
-    .hevoset-image-offset {
+    .hevoset-image {
         margin-left: auto;
         margin-top: auto;
     }
-    .kirjoituskone-image-offset {
+    .kirjoituskone-image {
         margin-left: auto;
         margin-top: auto;
     }
@@ -209,13 +216,6 @@ div.sidey-sidey {
 
 img {
     max-width: 100%;
-    &.smaller-size {
-        max-width: 80%;
-    }
-    &.smaller-size-also-smaller-height {
-        max-width: 80%;
-        max-height: 40rem;
-    }
 }
 
 blockquote::before {

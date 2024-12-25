@@ -4,9 +4,10 @@
 
 import { compile } from "sass";
 import { minify } from "html-minifier";
-import { bundle, transform } from "lightningcss";
+import { transform } from "lightningcss";
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import sharp from "sharp";
 
 // If this is just root, then leave empty, otherwise prefix via / (as in /dir/path)
 const BASE_URL = process.argv.length > 2 ? process.argv[2] : "/out";
@@ -69,6 +70,26 @@ writeFileSync("out/style.css", transform({
 console.log(`- Processing JS`);
 writeFileSync("out/script.js", minify(readFileSync("src/script.js").toString()));
 
+/** @type {{ [name: string]: { sizes: number[] } }} */
+const images = {};
+
+console.log(`- Processing images`);
+mkdirSync("out/images", { recursive: true });
+for (const img of readdirSync("images")) {
+    const name = img.replace(/\.jpg$/, "");
+    images[name] = { sizes: [] };
+
+    const process = sharp(`images/${img}`);
+
+    let width = (await process.metadata()).width;
+    if (!width) throw `Unable to get ${img} width`;
+    while (width > 512) {
+        process.resize(width).toFile(`out/images/${name}-${width}.jpg`);
+        images[name].sizes.push(width);
+        width = Math.floor(width / 1.5);
+    }
+}
+
 /**
  * @param {Page} page 
  */
@@ -96,14 +117,25 @@ for (const page of PAGES) {
         .replace(/INSERT_PAGE_HERE/g, data)
         .replace(/INSERT_NAV_HERE/g, navItems.join(''))
         .replace(/INSERT_BASE_URL_HERE/g, BASE_URL)
+        .replace(/INSERT_IMAGE_HERE=(?<img_name>\w+)/g, (_, imgName) => {
+            if (!(imgName in images)) {
+                throw `Image ${imgName} not found!`;
+            }
+            const sizes = images[imgName].sizes;
+            return `
+                <picture>
+                    ${sizes.map((size, i) => `
+                        <source
+                            srcset="${BASE_URL}/images/${imgName}-${size}.jpg"
+                            media="(min-width: ${(sizes[i] + sizes[i + 1]) / 2}px)"
+                        >
+                    `).join("")}
+                    <img class="${imgName}-image" src="${BASE_URL}/images/${imgName}-${sizes.at(-1)}.jpg">
+                </picture>
+            `;
+        })
         .replace(/INSERT_TITLE_HERE/g, page.title),
     MINIFY_OPTIONS));
-}
-
-console.log(`- Processing images`);
-mkdirSync("out/images", { recursive: true });
-for (const img of readdirSync("images")) {
-    cpSync(`images/${img}`, `out/images/${img}`);
 }
 
 console.log("Done!");

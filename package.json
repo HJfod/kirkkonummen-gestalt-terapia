@@ -4,7 +4,10 @@
     "description": "Kirkkonummen gestalt-terapian verkkosivut",
     "author": "",
     "watch": {
-        "build": ["src/*.*", "build.mjs"]
+        "build": [
+            "src/*.*",
+            "build.mjs"
+        ]
     },
     "scripts": {
         "build": "node build.mjs",
@@ -15,6 +18,7 @@
         "html-minifier": "^4.0.0",
         "lightningcss": "^1.28.2",
         "npm-watch": "^0.13.0",
-        "sass": "^1.83.0"
+        "sass": "^1.83.0",
+        "sharp": "^0.33.5"
     }
 }
