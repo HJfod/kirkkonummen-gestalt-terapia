@@ -3,7 +3,7 @@
 const cover = document.querySelector(".cover");
 if (cover) {
     document.addEventListener("scroll", () => {
-        cover.classList.toggle("collapsed", this.scrollY > 10);
+        cover.classList.toggle("collapsed", this.scrollY > 50);
     });
 }
 const nav = document.querySelector("nav");
