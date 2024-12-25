@@ -11,12 +11,16 @@
         <script defer src="INSERT_BASE_URL_HERE/script.js"></script>
     </head>
     <body>
-        <nav>
+        <nav role="navigation" aria-label="Sivuston navigaatio">
             <div class="controls">
                 <h1>Kirkkonummen gestalt-terapia</h1>
-                <button><span></span><span></span><span></span></button>
+                <button
+                    aria-expanded="false"
+                    aria-controls="nav-menu"
+                    aria-label="Avaa navigaatio"
+                ><span></span><span></span><span></span></button>
             </div>
-            <div class="items">INSERT_NAV_HERE</div>
+            <div class="items" id="nav-menu">INSERT_NAV_HERE</div>
         </nav>
         <div class="content">INSERT_PAGE_HERE</div>
         <footer>

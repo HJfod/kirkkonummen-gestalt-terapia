@@ -10,6 +10,7 @@ const nav = document.querySelector("nav");
 const navBtn = document.querySelector("nav button");
 if (navBtn) {
     navBtn.addEventListener("click", () => {
-        nav?.classList.toggle("open");
+        let open = nav?.classList.toggle("open");
+        navBtn.setAttribute("aria-expanded", open ? "true" : "false");
     });
 }
