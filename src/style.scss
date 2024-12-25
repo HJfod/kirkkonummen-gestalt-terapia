@@ -130,20 +130,11 @@ nav {
     }
 }
 
-.kukka-image {
-    // margin-top: -20rem;
-}
 .metsa-image {
-    // margin-left: -47rem;
-    // margin-top: -30rem;
+    object-position: top;
 }
-.hevoset-image {
-    // margin-left: -57rem;
-    // margin-top: -45rem;
-}
-.kirjoituskone-image {
-    // margin-left: -47rem;
-    // margin-top: -30rem;
+.kasi-image {
+    object-position: top;
 }
 .juha-image {
     max-width: 80%;
@@ -252,13 +243,10 @@ div.cover {
         font-size: 1.75em;
     }
     img {
-        // width: 100%;
-        // max-width: 100%;
-        // height: auto;
-        min-width: 100%;
+        width: 100%;
+        height: 100%;
         max-width: none;
         object-fit: cover;
-        object-position: center;
         transition: opacity .25s;
     }
     & ~ span.cover-padding {
@@ -288,8 +276,7 @@ div.cover {
             transition: height .25s;
         }
         & ~ div.cover-bg {
-            margin-top: 20rem;
-            margin-bottom: 10rem;
+            margin-top: 30rem;
             transition: margin-top .25s, margin-bottom .25s;
         }
     }
@@ -305,8 +292,7 @@ div.cover {
             height: 25rem;
         }
         &.collapsed ~ div.cover-bg {
-            margin-top: 15rem;
-            margin-bottom: 5rem;
+            margin-top: 20rem;
         }
     }
 }
