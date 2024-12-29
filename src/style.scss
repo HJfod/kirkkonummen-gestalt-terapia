@@ -13,7 +13,7 @@ body {
 
     background-color: var(--body);
     color: var(--text);
-    font-family: "Noto Sans", serif;
+    font-family: "Noto Sans", sans-serif;
     font-size: 1.2rem;
 }
 
@@ -33,7 +33,9 @@ nav {
     top: 0px;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     gap: .5rem;
 
     background-color: var(--nav-bg);
@@ -60,14 +62,27 @@ nav {
             color: var(--nav-link);
             text-decoration: none;
             transition: color .1s;
-            font-size: .9em;
+            font-size: .65em;
+            font-family: "Archivo", sans-serif;
+            text-transform: uppercase;
+
             &.current {
                 color: var(--nav-link-current);
             }
             &:hover {
                 color: var(--nav-link-current);
+                text-decoration: underline;
             }
         }
+    }
+
+    & h1 {
+        margin: 0;
+        color: var(--nav-link);
+        font-size: 1em;
+        text-align: left;
+        min-width: max-content;
+        font-size: .8em;
     }
 
     & > .controls {
@@ -79,11 +94,9 @@ nav {
         min-height: 3rem;
 
         & > h1 {
-            margin: 0;
-            color: var(--nav-link);
-            font-size: 1em;
-            text-align: left;
+            display: none;
         }
+
         & > button {
             --tick-size: 4.3px;
 
@@ -131,9 +144,28 @@ nav {
         }
     }
 
-    @media screen and (max-width: 1150px) {
+    @media screen and (max-width: 1100px) {
+        & > h1 {
+            font-size: .65em;
+        }
+        & h1 {
+            min-width: initial;
+        }
+    }
+    @media screen and (max-width: 920px) {
+        & {
+            flex-direction: column;
+            justify-content: initial;
+            align-items: initial;
+        }
+        & > h1 {
+            display: none;
+        }
         & > .controls {
             display: flex;
+            & > h1 {
+                display: initial;
+            }
         }
         & > .items {
             flex-direction: column;
@@ -141,6 +173,7 @@ nav {
             height: auto;
             & > a {
                 width: 100%;
+                font-size: .8em;
             }
         }
         &.open {
@@ -149,14 +182,15 @@ nav {
     }
 }
 
+.juha-image-container {
+    max-width: 60%;
+}
+
 .metsa-image {
     object-position: top;
 }
 .kasi-image {
     object-position: top;
-}
-.juha-image {
-    max-width: 80%;
 }
 .kirja-image {
     max-width: 80%;
@@ -180,7 +214,7 @@ nav {
     }
 }
 
-main, aside {
+article, aside {
     padding: 1rem;
     width: min(90%, 70ch);
 }
@@ -198,6 +232,10 @@ aside {
             width: fit-content;
         }
     }
+}
+
+address {
+    font-style: inherit;
 }
 
 div.content {
@@ -364,4 +402,11 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.image-author {
+    width: 100%;
+    text-align: right;
+    font-size: .8em;
+    font-style: italic;
 }
