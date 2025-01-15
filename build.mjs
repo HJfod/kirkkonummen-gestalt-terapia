@@ -123,6 +123,7 @@ for (const page of PAGES) {
     mkdirSync(path, { recursive: true });
     writeFileSync(`${path}/index.html`, minify(template
         .replace(/INSERT_PAGE_HERE/g, data)
+        .replace(/INSERT_PAGE_CLASS_HERE/g, page.file.replace(".html", ""))
         .replace(/INSERT_NAV_HERE/g, navItems.join(''))
         .replace(/INSERT_BASE_URL_HERE/g, BASE_URL)
         .replace(/INSERT_IMAGE_HERE=(?<img_name>\w+)/g, (_, imgName) => {

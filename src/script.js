@@ -3,7 +3,7 @@
 const cover = /** @type HTMLElement | null */ (document.querySelector(".cover"));
 if (cover) {
     document.addEventListener("scroll", () => {
-        cover.style.setProperty("--scroll-anim-frame", `-${Math.max(Math.min(this.scrollY / (this.innerHeight / 1.8), 1), 0)}s`);
+        cover.style.setProperty("--scroll-anim-frame", `-${Math.max(Math.min(this.scrollY / (this.innerHeight / 1.5), 1), 0)}s`);
         // cover.classList.toggle("collapsed", this.scrollY > 50);
     });
 }
