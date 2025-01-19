@@ -15,32 +15,39 @@ const BASE_URL = process.argv.length > 2 ? process.argv[2] : "/out";
 
 /** @type {Page[]} */
 const PAGES = [
+    //////
     {
         title: "Kirkkonummen gestalt-terapia",
         nav: "Etusivu",
         file: "index.html"
     },
+    //////
     {
         title: "Gestalt-terapeutti Juha Silvo",
         file: "minusta.html"
     },
+    //////
     {
         title: "Mitä on gestalt-terapia?",
         file: "terapia.html"
     },
+    //////
     {
         title: "Mitä terapiassa tehdään",
         file: "mita-terapiassa-tehdaan.html"
     },
+    //////
     {
         title: "Uskalla olla elossa",
         file: "kirja.html"
     },
+    //////
     {
         title: "Hinnasto ja yhteystiedot",
         file: "hinnasto.html",
         frontPageNav: "Yhteystiedot"
-    }
+    },
+    //////
 ];
 
 /** @type {import("html-minifier").Options} */
