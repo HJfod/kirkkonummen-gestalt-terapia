@@ -44,7 +44,7 @@ Esimerkki `uusi-sivu.html`-tiedostosta:
 
 Esimerkki muutoksesta `PAGES`-muuttujaan:
 
-```json
+```js
 {
     title: "Uuden sivun nimi",
     file: "uusi-sivu.html"
