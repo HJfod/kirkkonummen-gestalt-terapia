@@ -2,6 +2,8 @@
 :root {
     --body:             #eeeeee;
     --text:             #222222;
+    --border:           #7c7c7c;
+    --shadow:           rgba(34, 34, 34, 0.2);
     --nav-bg:           #333333;
     --nav-link:         #aaaaaa;
     --nav-link-current: #ffffff;
@@ -28,8 +30,11 @@ h1, h2, h3, h4 {
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
 }
+p {
+    line-height: 1.5;
+}
 
-nav {
+nav:not(.front-page-menu) {
     --bar-height: 50px;
 
     position: fixed;
@@ -185,6 +190,45 @@ nav {
     }
 }
 
+div.front-page-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+}
+nav.front-page-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+
+    & > a {
+        background-color: var(--body);
+        color: var(--text);
+        font-size: 1.1rem;
+        font-family: "Noto Sans", sans-serif;
+        text-decoration: none;
+
+        transition: background-color .1s, color .1s, border-color .1s, transform .1s;
+
+        border: 2px solid var(--border);
+        border-radius: .25rem;
+
+        padding: .6rem;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+
+        &:hover {
+            border-color: var(--text);
+            background-color: var(--text);
+            color: var(--body);
+            box-shadow: 0px 3px 3px var(--shadow);
+            // transform: scale(95%) rotate(0.02deg);
+            cursor: pointer;
+        }
+    }
+}
+
 .juha-image-container {
     max-width: 70%;
 }
@@ -256,11 +300,25 @@ div.sidey-sidey {
     flex-direction: row;
     justify-content: center;
     align-items: start;
-    gap: 1rem;
+    gap: .5rem;
+
+    & > article {
+        width: min(45%, 65ch);
+    }
+    & > aside {
+        width: min(35%, 55ch);
+        align-items: start;
+    }
 
     @media screen and (max-width: 1000px) {
         & {
             flex-direction: column;
+            align-items: center;
+        }
+        & > article, & > aside {
+            width: min(90%, 70ch);
+        }
+        & > aside {
             align-items: center;
         }
     }
@@ -349,8 +407,8 @@ div.cover {
         transition: height .25s;
     }
     & ~ div.cover-bg {
-        margin-top: 0rem;
-        margin-bottom: 0rem;
+        margin-top: 6rem;
+        margin-bottom: 6rem;
         transition: margin .25s;
     }
 
@@ -453,7 +511,14 @@ footer {
     display: none;
 }
 
+body.index div.cover h1 {
+    transform: translateY(20px);
+}
 body.index .only-on-frontpage {
     text-align: center;
     display: initial;
+}
+
+.align-cite-with-blockquote {
+    margin-left: 40px;
 }

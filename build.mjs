@@ -1,6 +1,6 @@
 // @ts-check
 
-/** @typedef {{ title: string, nav?: string, file: string }} Page */
+/** @typedef {{ title: string, nav?: string, file: string, frontPageNav?: string }} Page */
 
 import { compile } from "sass";
 import { minify } from "html-minifier";
@@ -18,14 +18,14 @@ const PAGES = [
     {
         title: "Kirkkonummen gestalt-terapia",
         nav: "Etusivu",
-        file: "index.html",
+        file: "index.html"
     },
     {
         title: "Gestalt-terapeutti Juha Silvo",
         file: "minusta.html"
     },
     {
-        title: "Mitä on gestalt-terapia",
+        title: "Mitä on gestalt-terapia?",
         file: "terapia.html"
     },
     {
@@ -38,7 +38,8 @@ const PAGES = [
     },
     {
         title: "Hinnasto ja yhteystiedot",
-        file: "hinnasto.html"
+        file: "hinnasto.html",
+        frontPageNav: "Yhteystiedot"
     }
 ];
 
@@ -113,11 +114,17 @@ for (const page of PAGES) {
 
     /** @type {string[]} */
     const navItems = [];
+    const frontPageNavItems = [];
     for (const navPage of PAGES) {
         navItems.push(`<a
             href="${BASE_URL}/${getPageRelativeURL(navPage)}"
             class="${navPage.file === page.file ? "current" : ""}"
         >${navPage.nav ?? navPage.title}</a>`);
+        if (navPage.frontPageNav) {
+            frontPageNavItems.push(`<a
+                href="${BASE_URL}/${getPageRelativeURL(navPage)}"
+            >${navPage.frontPageNav}</a>`);
+        }
     }
 
     mkdirSync(path, { recursive: true });
@@ -125,6 +132,7 @@ for (const page of PAGES) {
         .replace(/INSERT_PAGE_HERE/g, data)
         .replace(/INSERT_PAGE_CLASS_HERE/g, page.file.replace(".html", ""))
         .replace(/INSERT_NAV_HERE/g, navItems.join(''))
+        .replace(/INSERT_FRONT_PAGE_NAV_HERE/g, frontPageNavItems.join(''))
         .replace(/INSERT_BASE_URL_HERE/g, BASE_URL)
         .replace(/INSERT_IMAGE_HERE=(?<img_name>\w+)/g, (_, imgName) => {
             if (!(imgName in images)) {
