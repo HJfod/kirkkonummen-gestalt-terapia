@@ -141,7 +141,7 @@ for (const page of PAGES) {
         .replace(/INSERT_NAV_HERE/g, navItems.join(''))
         .replace(/INSERT_FRONT_PAGE_NAV_HERE/g, frontPageNavItems.join(''))
         .replace(/INSERT_BASE_URL_HERE/g, BASE_URL)
-        .replace(/INSERT_IMAGE_HERE=(?<img_name>\w+)/g, (_, imgName) => {
+        .replace(/INSERT_IMAGE_HERE=(?<img_name>[abcdefghjiklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ0123456789\-\._+\(\)]+)/g, (_, imgName) => {
             if (!(imgName in images)) {
                 throw `Image ${imgName} not found!`;
             }

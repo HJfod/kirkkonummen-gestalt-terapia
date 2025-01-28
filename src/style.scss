@@ -230,7 +230,7 @@ nav.front-page-menu {
 }
 
 .juha-image-container {
-    max-width: 70%;
+    max-width: 100%;
 }
 
 .metsa-image {
@@ -305,6 +305,9 @@ div.sidey-sidey {
     & > article {
         width: min(45%, 65ch);
     }
+    &.juha > article {
+        width: min(30%, 45ch);
+    }
     & > aside {
         width: min(35%, 55ch);
         align-items: start;
@@ -314,8 +317,11 @@ div.sidey-sidey {
         & {
             flex-direction: column;
             align-items: center;
+            &.kirja {
+                flex-direction: column-reverse;
+            }
         }
-        & > article, & > aside {
+        & > article, & > aside, &.juha > article {
             width: min(90%, 70ch);
         }
         & > aside {
@@ -348,6 +354,15 @@ table {
     }
 }
 
+ul {
+    & > li {
+        margin-bottom: 1rem;
+    }
+}
+span.nobreak {
+    white-space: nowrap;
+}
+
 blockquote::before {
     content: open-quote;
 
@@ -376,7 +391,7 @@ div.cover {
 
     transition: height .25s;
 
-    // z-index: 1;
+    z-index: 1;
     
     h1 {
         --max-font-size: 2.5em;
@@ -438,7 +453,7 @@ div.cover {
 
     @media screen and (max-width: 1000px) {
         & {
-            --max-cover-height: 23rem;
+            --max-cover-height: 400px;
             h1 {
                 --max-font-size: 1.6em;
             }
