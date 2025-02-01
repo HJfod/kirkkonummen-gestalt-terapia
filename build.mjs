@@ -181,4 +181,7 @@ for (const page of PAGES) {
     MINIFY_OPTIONS));
 }
 
+console.log(`- Creating CNAME`);
+writeFileSync("out/CNAME", SITE_URL);
+
 console.log("Done!");
