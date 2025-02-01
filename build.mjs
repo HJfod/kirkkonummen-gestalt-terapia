@@ -1,6 +1,6 @@
 // @ts-check
 
-/** @typedef {{ title: string, nav?: string, file: string, frontPageNav?: string }} Page */
+/** @typedef {{ title: string, description: string, nav?: string, file: string, frontPageNav?: string }} Page */
 
 import { compile } from "sass";
 import { minify } from "html-minifier";
@@ -13,37 +13,46 @@ import browserslist from "browserslist";
 // If this is just root, then leave empty, otherwise prefix via / (as in /dir/path)
 const BASE_URL = process.argv.length > 2 ? process.argv[2] : "/out";
 
+const SITE_URL = "https://kirkkonummengestalt.fi";
+
 /** @type {Page[]} */
 const PAGES = [
     //////
     {
         title: "Kirkkonummen gestalt-terapia",
+        description: "Gestalt-terapiapalvelut Kirkkonummella",
         nav: "Etusivu",
         file: "index.html"
     },
     //////
     {
         title: "Gestalt-terapeutti Juha Silvo",
+        description: "Gestalt-terapiapalvelut Kirkkonummella",
+        nav: "Gestalt-terapeutti <span class=\"nobreak\">Juha Silvo</span>",
         file: "minusta.html"
     },
     //////
     {
         title: "Mitä on gestalt-terapia?",
+        description: "Gestalt-terapiapalvelut Kirkkonummella",
         file: "terapia.html"
     },
     //////
     {
         title: "Mitä terapiassa tehdään",
+        description: "Gestalt-terapiapalvelut Kirkkonummella",
         file: "mita-terapiassa-tehdaan.html"
     },
     //////
     {
         title: "Uskalla olla elossa",
+        description: "Gestalt-terapiapalvelut Kirkkonummella",
         file: "kirja.html"
     },
     //////
     {
         title: "Hinnasto ja yhteystiedot",
+        description: "Gestalt-terapiapalvelut Kirkkonummella",
         file: "hinnasto.html",
         frontPageNav: "Yhteystiedot"
     },
@@ -161,11 +170,14 @@ for (const page of PAGES) {
                     <img
                         class="${imgName}-image"
                         src="${BASE_URL}/images/${imgName}.jpg"
+                        alt=""
                     >
                 </picture>
             `;
         })
-        .replace(/INSERT_TITLE_HERE/g, page.title),
+        .replace(/INSERT_SITE_URL_HERE/g, SITE_URL)
+        .replace(/INSERT_TITLE_HERE/g, page.title)
+        .replace(/INSERT_DESCRIPTION_HERE/g, page.description),
     MINIFY_OPTIONS));
 }
 
