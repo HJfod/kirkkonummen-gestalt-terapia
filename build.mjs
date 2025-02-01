@@ -13,6 +13,7 @@ import browserslist from "browserslist";
 // If this is just root, then leave empty, otherwise prefix via / (as in /dir/path)
 const BASE_URL = process.argv.length > 2 ? process.argv[2] : "/out";
 
+const SITE_CNAME = "kirkkonummengestalt.fi";
 const SITE_URL = "https://kirkkonummengestalt.fi";
 
 /** @type {Page[]} */
@@ -182,6 +183,6 @@ for (const page of PAGES) {
 }
 
 console.log(`- Creating CNAME`);
-writeFileSync("out/CNAME", SITE_URL);
+writeFileSync("out/CNAME", SITE_CNAME);
 
 console.log("Done!");
