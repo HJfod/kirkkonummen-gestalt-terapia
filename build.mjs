@@ -10,8 +10,15 @@ import path from "node:path";
 import sharp from "sharp";
 import browserslist from "browserslist";
 
+/**
+ * @param {string} url 
+ */
+function stripTrailingSlash(url) {
+    return url.endsWith("/") ? url.slice(0, url.length - 1) : url;
+}
+
 // If this is just root, then leave empty, otherwise prefix via / (as in /dir/path)
-const BASE_URL = process.argv.length > 2 ? process.argv[2] : "/out";
+const BASE_URL = stripTrailingSlash(process.argv.length > 2 ? process.argv[2] : "/out");
 
 const SITE_CNAME = "kirkkonummengestalt.fi";
 const SITE_URL = "https://kirkkonummengestalt.fi";
