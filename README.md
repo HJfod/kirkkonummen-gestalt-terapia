@@ -10,7 +10,7 @@ Esimerkiksi hinnaston muuttaminen:
 
 1. Avaa `src/hinnasto.html` GitHubin verkkoeditorissa ([linkki](https://github.com/HJfod/juice-nettisivut/edit/main/src/hinnasto.html))
 2. Muuta haluttua tekstiä. Varo rikkomasta olemassaolevia `<>`-tageja!
-3. Paina `Commit changes...` ja valinnaisesti kirjoita kuvaus muokkauksille. Tämän jälkeen paina `Commit changes` uudelleen. Sivuston pitäisi muutaman minuutin päästä olla automaattisesti päivittynyt. Jos päivitys ei jostain syystä näy, voit tarkistaa [Actions-välilehdeltä](https://github.com/HJfod/juice-nettisivut/actions) onko ylimmäisin tapahtuma onnistunut (vihreä OK-merkki) vai jostain syystä epäonnistunut (punainen X-merkki). Jos tapahtuma epäonnistui, kannattaa ottaa yhteyttä Aaroon.
+3. Paina `Commit changes...` ja valinnaisesti kirjoita kuvaus muokkauksille. Tämän jälkeen paina `Commit changes` uudelleen. Sivuston pitäisi muutaman minuutin päästä olla automaattisesti päivittynyt. Jos päivitys ei jostain syystä näy, voit tarkistaa [Actions-välilehdeltä](https://github.com/HJfod/juice-nettisivut/actions) onko ylimmäisin tapahtuma onnistunut (vihreä OK-merkki) vai jostain syystä epäonnistunut (punainen X-merkki). Jos tapahtuma epäonnistui, kannattaa ottaa yhteyttä minuun.
 
 Perustagien selitykset:
  - `<h2>`: Väliotsikko
